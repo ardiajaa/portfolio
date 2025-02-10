@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ardi Portfolio</title>
+    <link rel="icon" type="image/png" href="https://www.its.ac.id/wp-content/uploads/2020/07/Lambang-ITS-2-300x300.png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #000000;
+        --primary-color: #147efb;
+        --secondary-color: #526685;
+        --container-bg: #fff;
+        --shadow-color: rgba(0,0,0,0.3);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #1a1a1a;
+        --text-color: #ffffff;
+        --primary-color: #64b5ff;
+        --secondary-color: #a4b5d1;
+        --container-bg: #2d2d2d;
+        --shadow-color: rgba(255,255,255,0.1);
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: all 0.3s ease;
+      }
+
+      .theme-switch {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--container-bg);
+        padding: 8px;
+        border-radius: 30px;
+        box-shadow: 0 2px 15px var(--shadow-color);
+      }
+
+      .theme-switch button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 8px 16px;
+        border-radius: 20px;
+        color: var(--text-color);
+        font-weight: 500;
+        transition: all 0.3s ease;
+        min-width: 80px;
+      }
+
+      .theme-switch button.active {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 2px 8px var(--shadow-color);
+      }
+
+      .hover-effect {
+        transition: all 0.3s ease;
+      }
+      
+      .hover-effect:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+      
+      .icon.hover-effect:hover {
+        transform: translateY(-5px) scale(1.1);
+        filter: brightness(1.2);
+      }
+      
+      .btn.hover-effect:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px var(--shadow-color);
+      }
+      
+      .profile-img.hover-effect:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px var(--shadow-color);
+        filter: brightness(1.05);
+        transition: all 0.5s ease;
+      }
+      [data-aos] {
+        opacity: 0;
+        transition-property: opacity, transform;
+      }
+      
+      [data-aos].aos-animate {
+        opacity: 1;
+      }
+
+      .project-img {
+        transition: all 0.5s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-img:hover {
+        transform: scale(1.08) rotate(2deg);
+        box-shadow: 0 10px 20px var(--shadow-color);
+        filter: brightness(1.1);
+      }
+
+      .project-img::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
+      }
+
+      .project-img:hover::after {
+        left: 100%;
+      }
+
+      .title {
+        animation: slideInFromLeft 1s ease-out;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: var(--text-color);
+      }
+      
+      .title:hover {
+        transform: scale(1.05);
+        text-shadow: 2px 2px 15px rgba(20, 126, 251, 0.5);
+        color: var(--primary-color);
+        letter-spacing: 1px;
+      }
+
+      .section__text__p2 {
+        animation: slideInFromRight 1s ease-out;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .section__text__p2:hover {
+        transform: translateY(-5px);
+        color: var(--secondary-color);
+        text-shadow: 0 5px 15px rgba(20, 126, 251, 0.4);
+        padding-left: 10px;
+      }
+
+      @keyframes slideInFromLeft {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInFromRight {
+        0% {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .nav-links a {
+        color: var(--text-color);
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+        transition: all 0.3s ease;
+      }
+
+      .logo {
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo:hover {
+        text-shadow: 2px 2px 4px var(--shadow-color);
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+      }
+
+      .details-container {
+        background: var(--container-bg);
+        box-shadow: 0 0 10px var(--shadow-color);
+      }
+
+      .btn {
+        background: var(--container-bg);
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+      }
+
+      .btn-color-1 {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      footer {
+        background: var(--container-bg);
+        color: var(--text-color);
+      }
+
+      [data-theme="dark"] .details-container p,
+      [data-theme="dark"] .details-container h3,
+      [data-theme="dark"] .text-container p,
+      [data-theme="dark"] .experience-sub-title,
+      [data-theme="dark"] article h3,
+      [data-theme="dark"] article p {
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="desktop-nav" data-aos="fade-down">
+      <div class="logo" data-aos="fade-right" data-aos-delay="200" style="font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 1px; transition: all 0.4s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.textShadow='0 5px 15px rgba(20, 126, 251, 0.4)'" onmouseout="this.style.transform='none'; this.style.textShadow='none'">
+        <div class="theme-switch">
+          <button onclick="setTheme('light')" class="active">Light</button>
+          <button onclick="setTheme('dark')">Dark</button>
+        </div>
+      </div>
+      <div>
+        <ul class="nav-links">
+          <li data-aos="fade-left" data-aos-delay="400"><a href="#about">About</a></li>
+          <li data-aos="fade-left" data-aos-delay="600"><a href="#experience">Experience</a></li>
+          <li data-aos="fade-left" data-aos-delay="800"><a href="#projects">Projects</a></li>
+          <li data-aos="fade-left" data-aos-delay="1000"><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo" data-aos="fade-right" data-aos-delay="200" style="font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 1px; transition: all 0.4s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.textShadow='0 5px 15px rgba(20, 126, 251, 0.4)'" onmouseout="this.style.transform='none'; this.style.textShadow='none'">
+        <div class="theme-switch">
+          <button onclick="setTheme('light')" class="active">Light</button>
+          <button onclick="setTheme('dark')">Dark</button>
+        </div>
+      </div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container" data-aos="fade-right">
+        <img src="./assets/pp.png" alt="Ardi profile picture" class="profile-img hover-effect"  />
+      </div>
+      <div class="section__text" data-aos="fade-left">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Achmad Rizky Putra Ardianto</h1>
+        <p class="section__text__p2">Web Developer</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2 hover-effect"
+            onclick="window.open('./assets/cv.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1 hover-effect" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/ig.png"
+            alt="My Instagram profile"
+            class="icon hover-effect"
+            onclick="location.href='https://instagram.com/ikiardiii/'"
+          />
+          <img
+            src="./assets/wa.png"
+            alt="My WhatsApp profile"
+            class="icon hover-effect"
+            onclick="location.href='https://wa.me/6285843978908'"
+          />
+          <img
+            src="./assets/blog.png"
+            alt="My Blogger profile"
+            class="icon hover-effect"
+            onclick="location.href='https://ardianto02.blogspot.com/'"
+          />
+          <img
+            src="./assets/tiktok.png"
+            alt="My TikTok profile"
+            class="icon hover-effect"
+            onclick="location.href='https://www.tiktok.com/@ikiardiii'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon hover-effect"
+            onclick="location.href='https://github.com/ardiajaa'"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container" data-aos="fade-right">
+          <img
+            src="./assets/kucing its.jpeg"
+            alt="Profile picture"
+            class="about-pic hover-effect"
+            onmouseover="this.style.transform='scale(1.1) rotate(5deg)'; this.style.transition='all 0.3s ease'"
+            onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.transition='all 0.3s ease'"
+            onclick="this.style.transform='scale(0.95)'; setTimeout(() => this.style.transform='scale(1)', 150)"
+          />
+        </div>
+        <div class="about-details-container" data-aos="fade-left">
+          <div class="about-containers">
+            <div class="details-container" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon hover-effect"
+              />
+              <h3>Experience</h3>
+              <p>-1 years <br />Learn Web Development</p>
+            </div>
+            <div class="details-container" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon hover-effect"
+              />
+              <h3>Education</h3>
+              <p>SMKN 1 Cerme Gresik | TKJ<br />MTsN Gresik</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              Hi, I'm Ardi, a web developer passionate about creating functional and user-friendly websites. I'm currently in 11th grade at SMKN 1 Cerme, majoring in Computer and Network Engineering, and interning at CV. Mitra Teknologi Sejati from January to June 2025.
+              <br>
+              I love building clean, efficient web solutions and continuously improving my skills. Let's create something great together!
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow hover-effect"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container" data-aos="fade-up">
+        <div class="about-containers">
+          <div class="details-container" data-aos="slide-right" data-aos-duration="2000" data-aos-easing="ease-in-out" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+            <h2 class="experience-sub-title hover-effect" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Frontend Development</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/html.webp"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>HTML</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/css.webp"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>CSS</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/tailwind.png"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>Tailwind</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/js.png"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>JavaScript</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/bts.png"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>Bootstrap</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/vue.png"
+                  alt="Vue"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>Vue.JS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container" data-aos="slide-left" data-aos-duration="2000" data-aos-easing="ease-in-out" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+            <h2 class="experience-sub-title" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Backend Development</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/python.webp"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>Python</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/sql.png"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>SQL</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/phpp.png"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>PHP</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/git.png"
+                  alt="Experience icon"
+                  class="icon hover-effect"
+                />
+                <div>
+                  <h3>Git</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow hover-effect"
+        onclick="location.href='./#projects'"
+      />
+    </section>
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+            <div class="article-container">
+              <img
+                src="./assets/projek1.png"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Greeting Cards For Loved Ones</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn hover-effect"
+                onclick="location.href='https://github.com/ardiajaa/for-you'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn hover-effect"
+                onclick="location.href='https://it-is-for-you.vercel.app/'"
+              >
+                Visit Here
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+            <div class="article-container">
+              <img
+                src="./assets/projek2.png"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">DiWeb - Website Creation Services</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn hover-effect"
+                onclick="location.href='https://github.com/ardiajaa/diweb'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn hover-effect"
+                onclick="location.href='https://diweb.vercel.app/'"
+              >
+                Visit Here
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+            <div class="article-container">
+              <img
+                src="./assets/projek3.png"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Mitratek Project Management</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn hover-effect"
+                onclick="location.href='https://github.com/ardiajaa/mitratek'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn hover-effect"
+                onclick="location.href='https://mitratek.vercel.app/'"
+              >
+                Visit Here
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow hover-effect"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="transition: transform 0.3s ease">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon hover-effect"
+          />
+          <p><a href="mailto:ardiantorizky7@gmail.com">ardiantorizky7@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/wa.png"
+            alt="WhatsApp icon"
+            class="icon contact-icon hover-effect"
+          />
+          <p><a href="https://wa.me/6285843978908">WhatsApp</a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2025 Achmad Rizky Putra Ardianto.</p>
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        // Update active button
+        document.querySelectorAll('.theme-switch button').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.textContent.toLowerCase() === theme) {
+            btn.classList.add('active');
+          }
+        });
+        // Save theme preference
+        localStorage.setItem('theme', theme);
+      }
+
+      // Load saved theme preference
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
